@@ -8,4 +8,4 @@
 
 
 * ### [Aula](./aula/index.html)
-<!-- * ### [Plano de Curso]() -->
+* ### [Plano de Curso]()
