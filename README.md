@@ -11,5 +11,5 @@
 
 -----------------------
 
-* ### [Aula](https://255ribeiro.github.io/digital_transformations_2023_01_16/)
+* ### [Aula](./aula/index.html)
 * ### [Plano de Curso]()
