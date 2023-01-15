@@ -1,0 +1,1269 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Programação para Arqutetos e Urbanistas</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/league.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<style>
+	.row {
+		display: flex;
+	}
+
+	.column {
+		flex: 33.33%;
+		padding: 5px;
+	}
+</style>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<!-- CAPA -->
+			<section style="margin: 0px; padding: 0px;">
+
+				<div class="row">
+					<div class="column">
+						<img src=".\img\LCAD.jpg" alt="lcad" style="width:100px">
+					</div>
+					<div><br>
+						<h4 style="font-size: 34px;">27/07/2021<br>workshop temas emergentes:</h4>
+					</div>
+
+					<div class="column">
+						<img src=".\img\Bras_da_UFBA.png" alt="ufba" style="width:100px">
+					</div>
+
+				</div>
+
+				<br>
+
+				<h2>cidade, arquitetura e tecnologias digitais</h2>
+
+				<h4>Programação para Arquitetos e Urbanistas:<br>Perspectiva para Pesquisadores</h4>
+				<br>
+				<p style="font-size: 22px; position: absolute; left: 40px;">Fernando Ferraz Ribeiro -
+					fernando.ribeiro@ufba.br</p>
+
+			</section>
+
+			<section>
+				<blockquote
+					cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+					"The more accurate the map, the more it resembles the territory. The most accurate map possible
+					would be the territory, and thus would be perfectly accurate and perfectly useless."
+				</blockquote>
+				<p> Neil Gaiman, American Gods</p>
+
+
+			</section>
+
+			<!-- Tipos de Arquivos -->
+
+			<section data-background-color="DarkGoldenRod">
+				<section>
+					<h2>Tipos de Arquivos:</h2>
+					<p>Os arquivo digitais podem ser divididos em dois tipos:<br><br></p>
+
+					<ul style=" line-height: 2;">
+
+						<aside class="notes">
+							todo arquivo é binário
+							Um arquivo é considerado binário quando 30% ou mais do seu conteudo não é "plain text"
+
+						</aside>
+						<li>"Binários"</li>
+						<li>Plain text</li>
+
+					</ul>
+
+				</section>
+
+				<section>
+					<h3 style="text-align: left;">Exemplo:</h3>
+					<p style="font-size: 1rem;">Um aquivo cad contendo um círculo de raio 10, centro na origem e um
+						texto de altura 1 foi salvo nos formatos DWG e DXF (compatíveis com Autocad 2013). Depois os
+						aruivos foram abertos em um programa de plain text.</p>
+
+					<img style=" height: 500px;" src="./img/nanocad.png" />
+
+				</section>
+
+				<section>
+					<h4>Arquivo DWG - Binário</h4>
+					<img style="width: 100%;" src="./img/dwg_exemplo.png" />
+				</section>
+
+				<section>
+					<h4>Arquivo DXF - plain Text</h4>
+					<img style="width: 100%;" src="./img/dxf_exemplo.png" />
+				</section>
+
+				<section>
+					<h5>Os programas, softwares, apps e formatos de arquivos, são definidos em arquivos de teto simples.
+						Programar exige, dente outras habilidades, a familiaridade com os ambientes de edição de código
+						(arquivos plain text)</h5>
+
+				</section>
+
+
+				<section>
+					<h3>Exemplos de Arquivos Plain Text Importantes no estado da arte da computação aplicada a
+						arquitetura e urbanismo:</h3>
+				</section>
+				<section>
+
+					<h3> IFC SPF </h3>
+					<pre style="font-size: 1rem;"><code><script type="text/template">
+					ISO-10303-21;
+HEADER;
+/* NOTE a valid model view name has to be asserted, replacing 'notYetAssigned' ----------------- */
+FILE_DESCRIPTION(
+    ( 'ViewDefinition [notYetAssigned]'
+     ,'Comment [manual creation of example file]'
+	)
+	,'2;1');
+/* NOTE standard header information according to ISO 10303-21 ---------------------------------- */
+FILE_NAME(
+	'basic_shape_Brep.ifc',
+	'2012-06-18T18:00:00',
+	('Thomas Liebich'),
+	('buildingSMART International'),
+	'IFC text editor',
+	'IFC text editor',
+	'reference file created for the IFC4 specification');
+/* NOTE schema name to be replaced with 'IFC4' after the final release  ------------------------ */
+FILE_SCHEMA(('IFC4'));
+ENDSEC;
+
+DATA;
+/* --------------------------------------------------------------------------------------------- */
+/* general entities required for all IFC data sets, defining the context for the exchange ------ */
+#100= IFCPROJECT('0xScRe4drECQ4DMSqUjd6d',#110,'proxy with brep',$,$,$,$,(#201),#301);
+
+/* single owner history sufficient if not otherwise required by the view definition ------------ */
+/* provides the person and application creating the data set, and the time it is created ------- */
+#110= IFCOWNERHISTORY(#111,#115,$,.ADDED.,1320688800,$,$,1320688800);
+#111= IFCPERSONANDORGANIZATION(#112,#113,$);
+#112= IFCPERSON($,'Liebich','Thomas',$,$,$,$,$);
+#113= IFCORGANIZATION($,'buildingSMART International',$,$,$);
+#115= IFCAPPLICATION(#113,'1.0','IFC text editor','ifcTE');
+
+/* each IFC data set containing geometry has to define a geometric representation context ------ */
+/* the attribute 'ContextType' has to be 'Model' for 3D model geometry ------------------------- */
+#201= IFCGEOMETRICREPRESENTATIONCONTEXT($,'Model',3,1.0E-5,#210,$);
+/* the attribute 'ContextIdentifier' has to be 'Body' for the main 3D shape representation ----- */
+#202= IFCGEOMETRICREPRESENTATIONSUBCONTEXT('Body','Model',*,*,*,*,#201,$,.MODEL_VIEW.,$);
+#210= IFCAXIS2PLACEMENT3D(#901,$,$);
+
+/* each IFC data set containing geometry has to define at absolute minimum length and angle ---- */
+/* here length is milli metre as SI unit, and plane angle is 'degree' as non SI unit ----------- */
+#301= IFCUNITASSIGNMENT((#311,#312));
+#311= IFCSIUNIT(*,.LENGTHUNIT.,.MILLI.,.METRE.);
+#312= IFCCONVERSIONBASEDUNIT(#313,.PLANEANGLEUNIT.,'degree',#314);
+#313= IFCDIMENSIONALEXPONENTS(0,0,0,0,0,0,0);
+#314= IFCMEASUREWITHUNIT(IFCPLANEANGLEMEASURE(0.017453293),#315);
+#315= IFCSIUNIT(*,.PLANEANGLEUNIT.,$,.RADIAN.);
+
+/* each IFC data set containing elements in a building context has to include a building ------- */
+/* at absolute minimum (could have a site and stories as well) --------------------------------- */
+#500= IFCBUILDING('2FCZDorxHDT8NI01kdXi8P',$,'Test Building',$,$,#511,$,$,.ELEMENT.,$,$,$);
+/* if the building is the uppermost spatial structure element it defines the absolut position -- */
+#511= IFCLOCALPLACEMENT($,#512);
+/* no rotation - z and x axes set to '$' are therefore identical to "world coordinate system" -- */ 
+#512= IFCAXIS2PLACEMENT3D(#901,$,$);
+/* if the building is the uppermost spatial structure element it is assigned to the project ---- */
+#519= IFCRELAGGREGATES('2YBqaV_8L15eWJ9DA1sGmT',$,$,$,#100,(#500));
+
+/* shared coordinates - it is permissable to share common instances to reduce file size -------- */
+#901= IFCCARTESIANPOINT((0.,0.,0.));
+#902= IFCDIRECTION((1.,0.,0.));
+#903= IFCDIRECTION((0.,1.,0.));
+#904= IFCDIRECTION((0.,0.,1.)); 
+#905= IFCDIRECTION((-1.,0.,0.));
+#906= IFCDIRECTION((0.,-1.,0.));
+#907= IFCDIRECTION((0.,0.,-1.));
+
+/* --------------------------------------------------------------------------------------------- */
+/* proxy element with brep shape representation, assigned to the building ---------------------- */
+#1000= IFCBUILDINGELEMENTPROXY('1kTvXnbbzCWw8lcMd1dR4o',$,'P-1','sample proxy',$,#1001,#1010,$,$);
+/* proxy element placement relative to the building -------------------------------------------- */
+#1001= IFCLOCALPLACEMENT(#511,#1002);
+/* set local placement to 1 meter on x-axis, and 0 on y, and 0 on z axes ----------------------- */
+/* no rotation - z and x axes set to '$' are therefore identical to those of building ---------- */ 
+#1002= IFCAXIS2PLACEMENT3D(#1003,$,$);
+#1003= IFCCARTESIANPOINT((1000.,0.,0.));
+/* proxy element shape representation ---------------------------------------------------------- */
+#1010= IFCPRODUCTDEFINITIONSHAPE($,$,(#1020));
+/* a single shape representation of type 'brep' is included ------------------------------------ */
+#1020= IFCSHAPEREPRESENTATION(#202,'Body','Brep',(#1021));
+/* faceted boundary representation ------------------------------------------------------------- */
+/* cube, 1m width, 1m depth, 2m height --------------------------------------------------------- */
+#1021= IFCFACETEDBREP (#1022);
+#1022= IFCCLOSEDSHELL ((#1110, #1120, #1130, #1140, #1150, #1160));
+#1110= IFCFACE((#1111));
+#1111= IFCFACEOUTERBOUND(#1112,.T.);
+#1112= IFCPOLYLOOP((#1201,#1202,#1206,#1205));
+#1120= IFCFACE((#1121));
+#1121= IFCFACEOUTERBOUND(#1122,.T.);
+#1122= IFCPOLYLOOP((#1206,#1202,#1203,#1207));
+#1130= IFCFACE((#1131));
+#1131= IFCFACEOUTERBOUND(#1132,.T.);
+#1132= IFCPOLYLOOP((#1207,#1203,#1204,#1208));
+#1140= IFCFACE((#1141));
+#1141= IFCFACEOUTERBOUND(#1142,.T.);
+#1142= IFCPOLYLOOP((#1208,#1204,#1201,#1205));
+#1150= IFCFACE((#1151));
+#1151= IFCFACEOUTERBOUND(#1152,.T.);
+#1152= IFCPOLYLOOP((#1201,#1204,#1203,#1202));
+#1160= IFCFACE((#1161));
+#1161= IFCFACEOUTERBOUND(#1162,.T.);
+#1162= IFCPOLYLOOP((#1206,#1207,#1208,#1205));
+/* shared vertices of the faceted boundary representation -------------------------------------- */
+#1201= IFCCARTESIANPOINT((-500.,-500.,0.));
+#1202= IFCCARTESIANPOINT((500.,-500.,0.));
+#1203= IFCCARTESIANPOINT((500.,500.,0.));
+#1204= IFCCARTESIANPOINT((-500.,500.,0.));
+#1205= IFCCARTESIANPOINT((-500.,-500.,2000.));
+#1206= IFCCARTESIANPOINT((500.,-500.,2000.));
+#1207= IFCCARTESIANPOINT((500.,500.,2000.));
+#1208= IFCCARTESIANPOINT((-500.,500.,2000.));
+
+/* proxy element assigned to the building ------------------------------------------------------ */
+#10000=IFCRELCONTAINEDINSPATIALSTRUCTURE('2TnxZkTXT08eDuMuhUUFNy',$,'Physical model',$,(#1000),#500);
+
+
+ENDSEC;
+END-ISO-10303-21;
+					
+					</script></code></pre>
+					<p style="font-size: 1rem; color: black">fonte: <a target="_blank" style="color: black"
+							href="https://technical.buildingsmart.org/standards/ifc/ifc-examples/">https://technical.buildingsmart.org/standards/ifc/ifc-examples/</a>
+					</p>
+				</section>
+
+				<section>
+
+					<h3>IFC XML</h3>
+					<pre style="font-size: 1rem;"><code><script type="text/template">
+						<?xml version="1.0" encoding="utf-8"?>
+<ifc:ifcXML xsi:schemaLocation="http://www.buildingsmart-tech.org/ifc/IFC4/Add2TC1 IFC4.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ifc="http://www.buildingsmart-tech.org/ifc/IFC4/Add2TC1" xmlns="http://www.buildingsmart-tech.org/ifc/IFC4/Add2TC1">
+<IfcProject GlobalId="0xScRe4drECQ4DMSqUjd6d" Name="proxy with brep">
+ <OwnerHistory ChangeAction="added" LastModifiedDate="1320688800" CreationDate="1320688800">
+  <OwningUser>
+   <ThePerson FamilyName="Liebich" GivenName="Thomas" />
+   <TheOrganization id="i1" Name="buildingSMART International" />
+  </OwningUser>
+  <OwningApplication Version="1.0" ApplicationFullName="IFC text editor" ApplicationIdentifier="ifcTE">
+   <ApplicationDeveloper xsi:nil="true" href="i1" />
+  </OwningApplication>
+ </OwnerHistory>
+ <IsDecomposedBy>
+  <IfcRelAggregates GlobalId="2YBqaV_8L15eWJ9DA1sGmT">
+   <RelatedObjects>
+    <IfcBuilding GlobalId="2FCZDorxHDT8NI01kdXi8P" Name="Test Building" CompositionType="element">
+     <ObjectPlacement xsi:type="IfcLocalPlacement" id="i2">
+      <RelativePlacement>
+       <IfcAxis2Placement3D>
+        <Location id="i11" Coordinates="0 0 0" />
+       </IfcAxis2Placement3D>
+      </RelativePlacement>
+     </ObjectPlacement>
+     <ContainsElements>
+      <IfcRelContainedInSpatialStructure GlobalId="2TnxZkTXT08eDuMuhUUFNy" Name="Physical model">
+       <RelatedElements>
+        <IfcBuildingElementProxy GlobalId="1kTvXnbbzCWw8lcMd1dR4o" Name="P-1" Description="sample proxy">
+         <ObjectPlacement xsi:type="IfcLocalPlacement">
+          <PlacementRelTo xsi:type="IfcLocalPlacement" xsi:nil="true" href="i2" />
+          <RelativePlacement>
+           <IfcAxis2Placement3D>
+            <Location Coordinates="1000 0 0" />
+           </IfcAxis2Placement3D>
+          </RelativePlacement>
+         </ObjectPlacement>
+         <Representation xsi:type="IfcProductDefinitionShape">
+          <Representations>
+           <IfcShapeRepresentation RepresentationIdentifier="Body" RepresentationType="Brep">
+            <ContextOfItems xsi:type="IfcGeometricRepresentationSubContext" id="i12" ContextIdentifier="Body" ContextType="Model" CoordinateSpaceDimension="0" TargetView="model_view" />
+            <Items>
+             <IfcFacetedBrep>
+              <Outer>
+               <CfsFaces>
+                <IfcFace>
+                 <Bounds>
+                  <IfcFaceOuterBound Orientation="true">
+                   <Bound xsi:type="IfcPolyLoop">
+                    <Polygon>
+                     <IfcCartesianPoint id="i9" Coordinates="-500 -500 0" />
+                     <IfcCartesianPoint id="i4" Coordinates="500 -500 0" />
+                     <IfcCartesianPoint id="i3" Coordinates="500 -500 2000" />
+                     <IfcCartesianPoint id="i10" Coordinates="-500 -500 2000" />
+                    </Polygon>
+                   </Bound>
+                  </IfcFaceOuterBound>
+                 </Bounds>
+                </IfcFace>
+                <IfcFace>
+                 <Bounds>
+                  <IfcFaceOuterBound Orientation="true">
+                   <Bound xsi:type="IfcPolyLoop">
+                    <Polygon>
+                     <IfcCartesianPoint xsi:nil="true" href="i3" />
+                     <IfcCartesianPoint xsi:nil="true" href="i4" />
+                     <IfcCartesianPoint id="i6" Coordinates="500 500 0" />
+                     <IfcCartesianPoint id="i5" Coordinates="500 500 2000" />
+                    </Polygon>
+                   </Bound>
+                  </IfcFaceOuterBound>
+                 </Bounds>
+                </IfcFace>
+                <IfcFace>
+                 <Bounds>
+                  <IfcFaceOuterBound Orientation="true">
+                   <Bound xsi:type="IfcPolyLoop">
+                    <Polygon>
+                     <IfcCartesianPoint xsi:nil="true" href="i5" />
+                     <IfcCartesianPoint xsi:nil="true" href="i6" />
+                     <IfcCartesianPoint id="i8" Coordinates="-500 500 0" />
+                     <IfcCartesianPoint id="i7" Coordinates="-500 500 2000" />
+                    </Polygon>
+                   </Bound>
+                  </IfcFaceOuterBound>
+                 </Bounds>
+                </IfcFace>
+                <IfcFace>
+                 <Bounds>
+                  <IfcFaceOuterBound Orientation="true">
+                   <Bound xsi:type="IfcPolyLoop">
+                    <Polygon>
+                     <IfcCartesianPoint xsi:nil="true" href="i7" />
+                     <IfcCartesianPoint xsi:nil="true" href="i8" />
+                     <IfcCartesianPoint xsi:nil="true" href="i9" />
+                     <IfcCartesianPoint xsi:nil="true" href="i10" />
+                    </Polygon>
+                   </Bound>
+                  </IfcFaceOuterBound>
+                 </Bounds>
+                </IfcFace>
+                <IfcFace>
+                 <Bounds>
+                  <IfcFaceOuterBound Orientation="true">
+                   <Bound xsi:type="IfcPolyLoop">
+                    <Polygon>
+                     <IfcCartesianPoint xsi:nil="true" href="i9" />
+                     <IfcCartesianPoint xsi:nil="true" href="i8" />
+                     <IfcCartesianPoint xsi:nil="true" href="i6" />
+                     <IfcCartesianPoint xsi:nil="true" href="i4" />
+                    </Polygon>
+                   </Bound>
+                  </IfcFaceOuterBound>
+                 </Bounds>
+                </IfcFace>
+                <IfcFace>
+                 <Bounds>
+                  <IfcFaceOuterBound Orientation="true">
+                   <Bound xsi:type="IfcPolyLoop">
+                    <Polygon>
+                     <IfcCartesianPoint xsi:nil="true" href="i3" />
+                     <IfcCartesianPoint xsi:nil="true" href="i5" />
+                     <IfcCartesianPoint xsi:nil="true" href="i7" />
+                     <IfcCartesianPoint xsi:nil="true" href="i10" />
+                    </Polygon>
+                   </Bound>
+                  </IfcFaceOuterBound>
+                 </Bounds>
+                </IfcFace>
+               </CfsFaces>
+              </Outer>
+             </IfcFacetedBrep>
+            </Items>
+           </IfcShapeRepresentation>
+          </Representations>
+         </Representation>
+        </IfcBuildingElementProxy>
+       </RelatedElements>
+      </IfcRelContainedInSpatialStructure>
+     </ContainsElements>
+    </IfcBuilding>
+   </RelatedObjects>
+  </IfcRelAggregates>
+ </IsDecomposedBy>
+ <RepresentationContexts>
+  <IfcGeometricRepresentationContext ContextType="Model" CoordinateSpaceDimension="3" Precision="1E-05">
+   <WorldCoordinateSystem>
+    <IfcAxis2Placement3D>
+     <Location xsi:nil="true" href="i11" />
+    </IfcAxis2Placement3D>
+   </WorldCoordinateSystem>
+   <HasSubContexts>
+    <IfcGeometricRepresentationSubContext xsi:nil="true" href="i12" />
+   </HasSubContexts>
+  </IfcGeometricRepresentationContext>
+ </RepresentationContexts>
+ <UnitsInContext>
+  <Units>
+   <IfcSIUnit UnitType="lengthunit" Prefix="milli" Name="metre" />
+   <IfcConversionBasedUnit UnitType="planeangleunit" Name="degree">
+    <Dimensions LengthExponent="0" MassExponent="0" TimeExponent="0" ElectricCurrentExponent="0" ThermodynamicTemperatureExponent="0" AmountOfSubstanceExponent="0" LuminousIntensityExponent="0" />
+    <ConversionFactor>
+     <ValueComponent>
+      <IfcPlaneAngleMeasure-wrapper>0.017453293</IfcPlaneAngleMeasure-wrapper>
+     </ValueComponent>
+     <UnitComponent>
+      <IfcSIUnit UnitType="planeangleunit" Name="radian" />
+     </UnitComponent>
+    </ConversionFactor>
+   </IfcConversionBasedUnit>
+  </Units>
+ </UnitsInContext>
+</IfcProject>
+</ifc:ifcXML>
+
+
+
+						</script></code></pre>
+
+					<p style="font-size: 1rem; color: black">fonte: <a target="_blank" style="color: black"
+							href="https://technical.buildingsmart.org/standards/ifc/ifc-examples/">https://technical.buildingsmart.org/standards/ifc/ifc-examples/</a>
+					</p>
+				</section>
+
+				<section>
+
+					<h3>IFC JSON</h3>
+
+
+					<pre style="font-size: 1rem;"><code><script type="text/template">
+{
+	"ifc": [
+	{
+	{
+	"type": "IfcProject",
+	"GlobalId": "0xScRe4drECQ4DMSqUjd6d",
+	"Name": "proxy with brep",
+	"OwnerHistory": 
+	{
+	"ChangeAction": "added",
+	"LastModifiedDate": "1320688800",
+	"CreationDate": "1320688800",
+	"OwningUser": 
+	{
+		"ThePerson": 
+		{
+		"FamilyName": "Liebich",
+		"GivenName": "Thomas"
+		}
+	,
+		"TheOrganization": 
+		{
+		"id": 1,
+		"Name": "buildingSMART International"
+		}
+	
+	},
+	"OwningApplication": 
+	{
+		"Version": "1.0",
+		"ApplicationFullName": "IFC text editor",
+		"ApplicationIdentifier": "ifcTE",
+		"ApplicationDeveloper": 
+		{
+		"href": 1
+		}
+	
+	}
+	},
+	"IsDecomposedBy": 
+	[
+	{
+		"type": "IfcRelAggregates",
+		"GlobalId": "2YBqaV_8L15eWJ9DA1sGmT",
+		"RelatedObjects": 
+		[
+		{
+		"type": "IfcBuilding",
+		"GlobalId": "2FCZDorxHDT8NI01kdXi8P",
+		"Name": "Test Building",
+		"CompositionType": "element",
+		"ObjectPlacement": 
+		{
+		"type": "IfcLocalPlacement",
+		"id": 2,
+		"RelativePlacement": 
+		{
+			"type": "IfcAxis2Placement3D",
+			"Location": 
+			{
+			"id": 11,
+			"Coordinates": "0 0 0"
+			}
+	
+		}
+		},
+		"ContainsElements": 
+		[
+		{
+			"type": "IfcRelContainedInSpatialStructure",
+			"GlobalId": "2TnxZkTXT08eDuMuhUUFNy",
+			"Name": "Physical model",
+			"RelatedElements": 
+			[
+			{
+			"type": "IfcBuildingElementProxy",
+			"GlobalId": "1kTvXnbbzCWw8lcMd1dR4o",
+			"Name": "P-1",
+			"Description": "sample proxy",
+			"ObjectPlacement": 
+			{
+			"type": "IfcLocalPlacement",
+			"PlacementRelTo": 
+			{
+				"type": "IfcLocalPlacement",
+				"href": 2
+			}
+	,
+			"RelativePlacement": 
+			{
+				"type": "IfcAxis2Placement3D",
+				"Location": 
+				{
+				"Coordinates": "1000 0 0"
+				}
+	
+			}
+			},
+			"Representation": 
+			{
+			"type": "IfcProductDefinitionShape",
+			"Representations": 
+			[
+				{
+				"type": "IfcShapeRepresentation",
+				"RepresentationIdentifier": "Body",
+				"RepresentationType": "Brep",
+				"ContextOfItems": 
+				{
+				"type": "IfcGeometricRepresentationSubContext",
+				"id": 12,
+				"ContextIdentifier": "Body",
+				"ContextType": "Model",
+				"CoordinateSpaceDimension": "0",
+				"TargetView": "model_view"
+				}
+	,
+				"Items": 
+				[
+				{
+				"type": "IfcFacetedBrep",
+				"Outer": 
+				{
+					"CfsFaces": 
+					[
+					{
+					"type": "IfcFace",
+					"Bounds": 
+					[
+					{
+						"type": "IfcFaceOuterBound",
+						"Orientation": "true",
+						"Bound": 
+						{
+						"type": "IfcPolyLoop",
+						"Polygon": 
+						[
+						{
+						"type": "IfcCartesianPoint",
+						"id": 9,
+						"Coordinates": "-500 -500 0"
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"id": 4,
+						"Coordinates": "500 -500 0"
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"id": 3,
+						"Coordinates": "500 -500 2000"
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"id": 10,
+						"Coordinates": "-500 -500 2000"
+						}
+	
+						]
+	
+						}
+					}
+					]
+	
+					}                ,
+					{
+					"type": "IfcFace",
+					"Bounds": 
+					[
+					{
+						"type": "IfcFaceOuterBound",
+						"Orientation": "true",
+						"Bound": 
+						{
+						"type": "IfcPolyLoop",
+						"Polygon": 
+						[
+						{
+						"type": "IfcCartesianPoint",
+						"href": 3
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"href": 4
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"id": 6,
+						"Coordinates": "500 500 0"
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"id": 5,
+						"Coordinates": "500 500 2000"
+						}
+	
+						]
+	
+						}
+					}
+					]
+	
+					}                ,
+					{
+					"type": "IfcFace",
+					"Bounds": 
+					[
+					{
+						"type": "IfcFaceOuterBound",
+						"Orientation": "true",
+						"Bound": 
+						{
+						"type": "IfcPolyLoop",
+						"Polygon": 
+						[
+						{
+						"type": "IfcCartesianPoint",
+						"href": 5
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"href": 6
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"id": 8,
+						"Coordinates": "-500 500 0"
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"id": 7,
+						"Coordinates": "-500 500 2000"
+						}
+	
+						]
+	
+						}
+					}
+					]
+	
+					}                ,
+					{
+					"type": "IfcFace",
+					"Bounds": 
+					[
+					{
+						"type": "IfcFaceOuterBound",
+						"Orientation": "true",
+						"Bound": 
+						{
+						"type": "IfcPolyLoop",
+						"Polygon": 
+						[
+						{
+						"type": "IfcCartesianPoint",
+						"href": 7
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"href": 8
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"href": 9
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"href": 10
+						}
+	
+						]
+	
+						}
+					}
+					]
+	
+					}                ,
+					{
+					"type": "IfcFace",
+					"Bounds": 
+					[
+					{
+						"type": "IfcFaceOuterBound",
+						"Orientation": "true",
+						"Bound": 
+						{
+						"type": "IfcPolyLoop",
+						"Polygon": 
+						[
+						{
+						"type": "IfcCartesianPoint",
+						"href": 9
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"href": 8
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"href": 6
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"href": 4
+						}
+	
+						]
+	
+						}
+					}
+					]
+	
+					}                ,
+					{
+					"type": "IfcFace",
+					"Bounds": 
+					[
+					{
+						"type": "IfcFaceOuterBound",
+						"Orientation": "true",
+						"Bound": 
+						{
+						"type": "IfcPolyLoop",
+						"Polygon": 
+						[
+						{
+						"type": "IfcCartesianPoint",
+						"href": 3
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"href": 5
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"href": 7
+						}
+						,
+						{
+						"type": "IfcCartesianPoint",
+						"href": 10
+						}
+	
+						]
+	
+						}
+					}
+					]
+	
+					}
+					]
+	
+				}
+				}
+				]
+	
+				}
+			]
+	
+			}
+			}
+			]
+	
+		}
+		]
+	
+		}
+		]
+	
+	}
+	]
+	,
+	"RepresentationContexts": 
+	[
+	{
+		"type": "IfcGeometricRepresentationContext",
+		"ContextType": "Model",
+		"CoordinateSpaceDimension": "3",
+		"Precision": "1E-05",
+		"WorldCoordinateSystem": 
+		{
+		"type": "IfcAxis2Placement3D",
+		"Location": 
+		{
+		"href": 11
+		}
+	
+		},
+		"HasSubContexts": 
+		[
+		{
+		"type": "IfcGeometricRepresentationSubContext",
+		"href": 12
+		}
+	
+		]
+	
+	}
+	]
+	,
+	"UnitsInContext": 
+	{
+	"Units": 
+	[
+		{
+		"type": "IfcSIUnit",
+		"UnitType": "lengthunit",
+		"Prefix": "milli",
+		"Name": "metre"
+		}
+		,
+		{
+		"type": "IfcConversionBasedUnit",
+		"UnitType": "planeangleunit",
+		"Name": "degree",
+		"Dimensions": 
+		{
+		"LengthExponent": "0",
+		"MassExponent": "0",
+		"TimeExponent": "0",
+		"ElectricCurrentExponent": "0",
+		"ThermodynamicTemperatureExponent": "0",
+		"AmountOfSubstanceExponent": "0",
+		"LuminousIntensityExponent": "0"
+		}
+	,
+		"ConversionFactor": 
+		{
+		"ValueComponent": 
+		{
+		"type": "IfcPlaneAngleMeasure",
+		"value": "0.017453293"
+		},
+		"UnitComponent": 
+		{
+		"type": "IfcSIUnit",
+		"UnitType": "planeangleunit",
+		"Name": "radian"
+		}
+	
+		}
+		}
+	]
+	
+	}
+	},
+	}
+	]
+	}
+
+						</script></code></pre>
+
+					<p style="font-size: 1rem; color: black">fonte: <a target="_blank" style="color: black"
+							href="https://technical.buildingsmart.org/standards/ifc/ifc-examples/">https://technical.buildingsmart.org/standards/ifc/ifc-examples/</a>
+					</p>
+
+				</section>
+
+				<section>
+					<h3>CityGML</h3>
+
+
+					<pre style="font-size: 1rem;"><code ><script type="text/template">
+						
+						<?xml version="1.0" encoding="utf-8"?><!-- IFC to CityGML by IFCExplorer KIT --><!-- CityGML to Sketchup by  Sketchup CityGML Plugin FH GelsenKirchen --><!--CityGML Dataset produced with CityGML Export Plugin for Sketchup by GeoRES --><!--http://www.geores.de --><!-- Edited Manually in Oxygen 8.2 --><!-- Modified by GMLOffset.xslt at Mon Dec 6 2010 --><!-- Version 2 Building located in the area of KIT Campus North)--><!-- Modified by GMLOffset.xslt at Wed Dec 8 2010 --><!-- Modified by GMLOffset.xslt at Wed Mar 29 2017 --><core:CityModel xsi:schemaLocation="http://www.opengis.net/citygml/2.0 http://schemas.opengis.net/citygml/2.0/cityGMLBase.xsd  http://www.opengis.net/citygml/appearance/2.0 http://schemas.opengis.net/citygml/appearance/2.0/appearance.xsd http://www.opengis.net/citygml/building/2.0 http://schemas.opengis.net/citygml/building/2.0/building.xsd http://www.opengis.net/citygml/generics/2.0 http://schemas.opengis.net/citygml/generics/2.0/generics.xsd" xmlns:core="http://www.opengis.net/citygml/2.0" xmlns="http://www.opengis.net/citygml/profiles/base/2.0" xmlns:bldg="http://www.opengis.net/citygml/building/2.0" xmlns:gen="http://www.opengis.net/citygml/generics/2.0" xmlns:grp="http://www.opengis.net/citygml/cityobjectgroup/2.0" xmlns:app="http://www.opengis.net/citygml/appearance/2.0" xmlns:gml="http://www.opengis.net/gml" xmlns:xAL="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!-- Manually edited by KHH 23.01.2017, CityGML 2.0, Address added, Codespaces added -->
+    <gml:name>AC14-FZK-Haus</gml:name>
+    <gml:boundedBy>
+        <gml:Envelope srsDimension="3" srsName="urn:adv:crs:ETRS89_UTM32*DE_DHHN92_NH">
+            <gml:lowerCorner srsDimension="3">457841.5 5439082.5 111.8 </gml:lowerCorner>
+            <gml:upperCorner srsDimension="3">457854.5 5439093.5 118.317669 </gml:upperCorner>
+        </gml:Envelope>
+    </gml:boundedBy>
+    
+    
+    <core:cityObjectMember>
+        <bldg:Building gml:id="UUID_d281adfc-4901-0f52-540b-4cc1a9325f82">
+            <gml:description>FZK-Haus (Forschungszentrum Karlsruhe, now KIT), created by Karl-Heinz
+                Haefele </gml:description>
+            <gml:name>AC14-FZK-Haus</gml:name>
+            <core:creationDate>2017-01-23</core:creationDate>
+            <core:relativeToTerrain>entirelyAboveTerrain</core:relativeToTerrain>
+            <gen:measureAttribute name="GrossPlannedArea">
+                <gen:value uom="m2">120.00</gen:value>
+            </gen:measureAttribute>
+
+
+						</script></code></pre>
+
+					<p style="font-size: 1rem; color: black">fonte: <a target="_blank" style="color: black"
+							href="https://www.citygmlwiki.org/index.php?title=FZK_Haus">https://www.citygmlwiki.org/index.php?title=FZK_Haus</a>
+					</p>
+
+
+				</section>
+				<section>
+					<h3>GeoJson</h3>
+
+					<pre style="font-size: 1rem;"><code ><script type="text/template">
+								{ "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature",
+      "geometry": {"type": "Point", "coordinates": [102.0, 0.5]},
+      "properties": {"prop0": "value0"}
+      },
+    { "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [102.0, 0.0], [103.0, 1.0], [104.0, 0.0], [105.0, 1.0]
+          ]
+        },
+      "properties": {
+        "prop0": "value0",
+        "prop1": 0.0
+        }
+      },
+    { "type": "Feature",
+       "geometry": {
+         "type": "Polygon",
+         "coordinates": [
+           [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0],
+             [100.0, 1.0], [100.0, 0.0] ]
+           ]
+
+       },
+       "properties": {
+         "prop0": "value0",
+         "prop1": {"this": "that"}
+         }
+       }
+    ]
+  }
+							</script>
+						</code>
+					</pre>
+
+					<p style="font-size: 1rem; color: black">fonte: <a target="_blank" style="color: black"
+							href="https://gist.github.com/wavded/1200773?short_path=99c1af9">https://gist.github.com/wavded/1200773?short_path=99c1af9</a>
+					</p>
+
+				</section>
+
+			</section>
+
+			<!-- Arquitetura -->
+			<section>
+
+				<section>
+					<H5 style="text-align: center;">Arquitetura e construção:<br>Panorama dos útimos artigos publicados
+						na revista</H5>
+					<h2>AUTOMATION IN CONSTRUCTION</h2>
+					<a target="_blank"
+						href="https://www.journals.elsevier.com/automation-in-construction">https://www.journals.elsevier.com/automation-in-construction</a>
+				</section>
+				<section>
+					<h4 style="text-align: left;">Linha Editorial:</h4>
+					<div style="font-size: 1.5rem; text-align:justify; text-justify: inter-word;">
+						Automation in Construction is an international journal for the publication of original research
+						papers. The journal publishes refereed material on <span style="color: LightCoral;"> aspects
+							pertaining to the use of Information Technologies in Design, Engineering, Construction
+							Technologies, and Maintenance and Management of Constructed Facilities.</span> The scope of
+						Automation in Construction is broad, encompassing all stages of the construction life cycle from
+						initial planning and design, through construction of the facility, its operation and
+						maintenance, to the eventual dismantling and recycling of buildings and engineering structures.
+						The following list of topics is not intended to be exhaustive, but rather to indicate topics
+						that fall within the journal's purview:<br><br>
+
+						<ul style=" color: LightCoral;">
+							<li>Computer-aided design, product modeling, decision support systems, classification and
+								standardization, product data interchange</li>
+							<li>Computer-aided engineering, process simulation models, graphics</li>
+							<li>Robotics, metrology, logistics, automated inspection, demolition/remediation
+							</li>
+							<li>Facilities management, management information systems, intelligent control systems.</li>
+
+						</ul>
+					</div>
+
+
+				</section>
+
+				<section data-background-color="white">
+					<h4> Dados Biliométricos</h4>
+					<img src="./img/aic_cita.png" />
+
+
+				</section>
+
+				<section>
+					<h5 style="text-align: left;">Artigos recentes:</h5>
+					<img style="width: 70%;" src="./img/aic.png" />
+					<p style="text-align: left; font-size: 1rem;">
+						Conforme acesso no dia 23/07/2021
+					</p>
+				</section>
+
+				<section>
+					<h5 style="text-align: left;">Artigo 01:</h5>
+					<img src="./img/aic/ppr01/capa.png" />
+					<a target="_blank" style="font-size: 1.2rem;"
+						href="https://crossmark.crossref.org/dialog/?doi=10.1016/j.autcon.2021.103825&domain=pdf">https://crossmark.crossref.org/dialog/?doi=10.1016/j.autcon.2021.103825&domain=pdf</a>
+
+
+				</section>
+
+				<section>
+					<h5 style="text-align: left;">Artigo 02:</h5>
+					<img src="./img/aic/ppr02/capa.png" />
+					<a target="_blank" style="font-size: 1.2rem;"
+						href="https://www.sciencedirect.com/science/article/pii/S0926580521002272?via%3Dihub">https://www.sciencedirect.com/science/article/pii/S0926580521002272?via%3Dihub</a>
+
+
+				</section>
+
+				<section>
+					<h5 style="text-align: left;">Artigo 03:</h5>
+					<img src="./img/aic/ppr03/capa.png" />
+
+					<a target="_blank" style="font-size: 1.2rem;"
+						href="https://www.sciencedirect.com/science/article/pii/S0926580521002612?via%3Dihub">https://www.sciencedirect.com/science/article/pii/S0926580521002612?via%3Dihub</a>
+
+
+				</section>
+
+				<section>
+					<h5 style="text-align: left;">Artigo 04:</h5>
+					<img src="./img/aic/ppr04/capa.png" />
+					<a target="_blank" style="font-size: 1.2rem;"
+						href="https://www.sciencedirect.com/science/article/pii/S0926580521002569#f0005">https://www.sciencedirect.com/science/article/pii/S0926580521002569#f0005</a>
+
+
+				</section>
+
+
+				<section>
+
+					<h6 style="text-align: left;">Extra:<br>Parametric Solutions</h6>
+
+					<iframe title="vimeo-player" src="https://player.vimeo.com/video/563634098" width="640" height="360"
+						frameborder="0" allow="autoplay;" allowfullscreen></iframe>
+
+					<a target="_blank" href="https://www.parametric.se/">https://www.parametric.se/</a>
+
+				</section>
+
+			</section>
+
+			<!-- Urbanismo -->
+			<section>
+
+				<section>
+					<H5 style="text-align: center;">Urbanismo e Cidades:<br>Panorama dos útimos artigos publicados na
+						revista</H5>
+					<h2>Cities</h2>
+					<a target="_blank"
+						href="https://www.journals.elsevier.com/cities">https://www.journals.elsevier.com/cities</a>
+				</section>
+
+				<section>
+					<h4 style="text-align: left;">Linha Editorial:</h4>
+					<div style="font-size: 1.2rem; text-align:justify; text-justify: inter-word;">
+						Cities publishes articles on many aspects of urban planning and policy. It distinguishes itself
+						by providing an international and interdisciplinary platform for the exchange of ideas and
+						information among urban planners, policy makers and analysts, and urbanists from all
+						disciplines.<br><br>
+
+						The primary aims of the journal are to analyze and assess past and present urban development and
+						management as a reflection of effective, ineffective and non-existent planning policies; and the
+						promotion of the implementation of appropriate urban policies in both the developed and the
+						developing world.<br><br>
+
+						Topics covered include: urban adaptation to climate change; gentrification and housing;
+						homelessness and welfare services; urban management; public-private sector cooperation;
+						development and planning problems; urban regeneration; neighborhood conservation and urban
+						design; immigration and international labor migration; urban politics; urban theory; urban
+						governance; <span style="color: LightCoral;">smart cities and regions</span>; infrastructure;
+						livability and quality of life; greening; and the complexities of creating sustainable
+						cities.<br><br>
+
+						Every year, we also publish a handful of Viewpoints. These are articles that are shorter in
+						nature, summative in their literature review, and offer a particular argument that could
+						potentially generate debates among scholars and practitioners.<br><br>
+
+						Each volume also features one or more City Profiles. Coverage includes a brief description of
+						the city's historical development, an account of contemporary conditions, problems or issues,
+						and a critical review of recent or current policy, planning or management responses.
+
+						</ul>
+					</div>
+
+
+				</section>
+
+				<section data-background-color="white">
+					<h4> Dados Biliométricos</h4>
+					<img src="./img/cities_cita.png" />
+
+
+				</section>
+
+
+				<section>
+					<h5 style="text-align: left;">Artigos recentes:</h5>
+					<img style="width: 80%;" src="./img/cities.png" />
+					<p style="text-align: left; font-size: 1rem;">
+						Conforme acesso no dia 23/07/2021
+					</p>
+
+
+				</section>
+
+				<section>
+
+					<h5 style="text-align: left;">Artigo 01:</h5>
+					<img src="./img/cities/ppr01/capa.png" \>
+					<a target="_blank" style="font-size: 1.2rem;"
+						href="https://www.sciencedirect.com/science/article/pii/S0264275121002468?via%3Dihub">https://www.sciencedirect.com/science/article/pii/S0264275121002468?via%3Dihub</a>
+
+				</section>
+
+
+				<section>
+
+					<h5 style="text-align: left;">Artigo 02:</h5>
+					<img src="./img/cities/ppr02/capa.png" \>
+					<a target="_blank" style="font-size: 1.2rem;"
+						href="https://www.sciencedirect.com/science/article/pii/S0264275121002456?via%3Dihub">https://www.sciencedirect.com/science/article/pii/S0264275121002456?via%3Dihub</a>
+
+				</section>
+
+				<section>
+
+					<h5 style="text-align: left;">Artigo 03:</h5>
+					<img src="./img/cities/ppr03/capa.png" \>
+					<a target="_blank" style="font-size: 1.2rem;"
+						href="https://www.sciencedirect.com/science/article/pii/S0264275121002298?via%3Dihub">https://www.sciencedirect.com/science/article/pii/S0264275121002298?via%3Dihub</a>
+
+				</section>
+
+
+				<section>
+
+					<h5 style="text-align: left;">Artigo 04:</h5>
+					<img src="./img/cities/ppr04/capa.png" \>
+					<a target="_blank" style="font-size: 1.2rem;"
+						href="https://www.sciencedirect.com/science/article/pii/S026427512100233X?via%3Dihub">https://www.sciencedirect.com/science/article/pii/S026427512100233X?via%3Dihub</a>
+
+				</section>
+
+
+
+			</section>
+
+			<!-- Conclusão -->
+			<section>
+
+
+				<section data-background-color="indigo">
+
+					<h3 style="text-align: left;">Reflexões:</h3>
+
+					<img style="width: 70%;" src="img/MAPA_conceitual_ciencia_de_dados.jpg" /><br>
+
+
+				</section>
+
+				<section data-background-color="indigo">
+
+					<h3 style="text-align: left;">Reflexões:</h3>
+					<img style="width: 70%;" src="img/will-robots-take-over-our-jobs.jpg" /><br>
+
+					<a target="_blank" style="font-size: 1.2rem;"
+						href="https://d.ibtimes.co.uk/en/full/1622009/will-robots-take-over-our-jobs.jpg">
+						https://d.ibtimes.co.uk/en/full/1622009/will-robots-take-over-our-jobs.jpg </a>
+
+				</section>
+
+			</section>
+
+		</div>
+	</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			transition: "convex",
+			slideNumber: true,
+			hash: true,
+			progress: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
