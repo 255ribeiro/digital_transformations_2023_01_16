@@ -12,4 +12,4 @@
 -----------------------
 
 * ### [Aula](./aula/index.html)
-* ### [Plano de Curso]()
+* ### [Plano de Curso](https://docs.google.com/document/d/1Rhee5A5KPzQz4GN9QMGWL_0jY27PfjtZcLgo9HLOt5g/edit?usp=sharing)
